@@ -28,6 +28,4 @@ pnpm dev
 pnpm build
 ```
 
-## Publicar en Vercel
 
-Importá el repositorio desde Vercel (Add New > Project). Detecta Vite solo y no hace falta configurar nada.
