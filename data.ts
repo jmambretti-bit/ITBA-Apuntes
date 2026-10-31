@@ -176,6 +176,6 @@ Programación Imperativa|1hoBgl2B8xMrSSuFInACjQ54E8PEvimSV
 Análisis Matemático II|14ecwn7eIsX6AOGCtrMJ7CWnn0HEDhQnh`;
 EXTRA_DRV.split("\n").forEach((l) => { const [n, id] = l.split("|"); const k = norm(n); const cur = DRV[k] || []; if (!cur.includes(id)) DRV[k] = [...cur, id]; });
 // Correo de contacto público (opcional). Si lo completás, se muestra en la sección Contacto.
-export const CONTACT_EMAIL = "";
+export const CONTACT_EMAIL = "apuntescomunidaditba@gmail.com";
 export { norm, DRIVES, DRV, link, CAREERS, SEED, ASOC, ALL, COL, BLUE, NAVY, SECS, EXS };
 export type { Item };
