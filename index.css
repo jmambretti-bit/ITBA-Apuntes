@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.rise { animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.pop { animation: pop 0.18s ease-out both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes pop { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+:focus-visible { outline: 3px solid #0b2a6b; outline-offset: 2px; box-shadow: 0 0 0 2px #fff; }
+.dark :focus-visible { outline-color: #fff; box-shadow: 0 0 0 2px #0b1220; }
+@media (prefers-reduced-motion: reduce) { .rise, .pop { animation: none; } }
+
+/* Planificador */
+.pl-ok { background: #e3f4ea; border-color: #2e9e5b; color: #12301f; }
+.pl-cur { background: #fff4d6; border-color: #d9a400; color: #3d2f00; }
+.pl-av { background: #ffffff; border-color: #2b52a1; color: #1b2433; }
+.pl-lock { background: #f3f5f9; border-color: #dce3f0; color: #6b7a99; }
+.rel-self { box-shadow: 0 0 0 3px #2b52a1; }
+.rel-parent { box-shadow: 0 0 0 3px #f59e0b; }
+.rel-child { box-shadow: 0 0 0 3px #22a06b; }
+.dim { opacity: 0.4; }
+
+/* Modo noche: solo cambia los colores, el diseño es el mismo */
+.dark { color-scheme: dark; }
+.dark body { background: #0b1220; }
+.dark input, .dark select, .dark textarea { background-color: #0f1a2d; color: #e6ecf7; }
+.dark ::placeholder { color: #7a8bad; }
+.dark .bg-white { background-color:#111B2E; }
+.dark .hover\:bg-white\:hover { background-color:#16233A; }
+.dark .bg-\[\#EEF2F9\] { background-color:#1A2942; }
+.dark .hover\:bg-\[\#EEF2F9\]\:hover { background-color:#1A2942; }
+.dark .focus-visible\:bg-\[\#EEF2F9\]\:focus-visible { background-color:#1A2942; }
+.dark .hover\:bg-\[\#E1E8F5\]\:hover { background-color:#22365A; }
+.dark .hover\:bg-\[\#F7F9FD\]\:hover { background-color:#16233A; }
+.dark .border-\[\#DCE3F0\] { border-color:#26364F; }
+.dark .border-\[\#C5D0E6\] { border-color:#34496B; }
+.dark .border-\[\#EEF2F9\] { border-color:#1A2942; }
+.dark .text-\[\#1B2433\] { color:#E6ECF7; }
+.dark .text-slate-800 { color:#E1E8F5; }
+.dark .text-slate-700 { color:#CBD5E8; }
+.dark .text-slate-600 { color:#B4C1DA; }
+.dark .text-slate-500 { color:#93A4C4; }
+.dark .text-slate-400 { color:#7A8BAD; }
+.dark .hover\:text-slate-800\:hover { color:#FFFFFF; }
+.dark .text-\[\#2B52A1\] { color:#8FB0F5; }
+.dark .hover\:text-\[\#2B52A1\]\:hover { color:#A9C2F8; }
+.dark .border-\[\#2B52A1\] { border-color:#6C93E8; }
+.dark .hover\:border-\[\#2B52A1\]\:hover { border-color:#6C93E8; }
+.dark .text-\[\#B3261E\] { color:#FF8A80; }
+.dark .text-\[\#2E9E5B\] { color:#5FD08D; }
+.dark .bg-\[\#FDECEA\] { background-color:#3A1B1B; }
+.dark .text-\[\#7A1C15\] { color:#F2B8B5; }
+.dark .border-\[\#E6B8B4\] { border-color:#7A3B37; }
+.dark .pl-ok { background: #12301f; border-color: #2e9e5b; color: #cff1dc; }
+.dark .pl-cur { background: #3a2f08; border-color: #d9a400; color: #ffe9a8; }
+.dark .pl-av { background: #111b2e; border-color: #6c93e8; color: #e6ecf7; }
+.dark .pl-lock { background: #0f1828; border-color: #26364f; color: #7a8bad; }
+
+/* Contraste: grises secundarios más oscuros (mín. 4,5:1 sobre blanco y sobre #eef2f9) */
+.text-slate-500 { color: #55627a; }
+.text-slate-400 { color: #5f6c85; }
+.pl-lock { color: #4e5b73; }
+.dim { opacity: 0.75; filter: grayscale(0.6); }
+/* Modo noche: la portada también pasa a oscuro */
+.dark .hero { background: #0b1530 !important; }
+.dark .hero-circle { background: #12244d !important; }
+
+/* ===== Movimiento (solo transiciones; el aspecto no cambia) ===== */
+:root { --ease: cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+/* Entrada de cada pantalla */
+.view-in { animation: view-in 0.34s var(--ease) backwards; }
+@keyframes view-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.fade-in { animation: fade-in 0.2s ease-out both; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.drop { animation: drop 0.17s var(--ease) both; transform-origin: top left; }
+@keyframes drop { from { opacity: 0; transform: translateY(-6px) scale(0.98); } to { opacity: 1; transform: none; } }
+
+/* Los hijos de una lista entran uno detrás de otro */
+.stag > * { animation: item-in 0.42s var(--ease) backwards; }
+@keyframes item-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.stag > :nth-child(2) { animation-delay: 40ms; }
+.stag > :nth-child(3) { animation-delay: 80ms; }
+.stag > :nth-child(4) { animation-delay: 120ms; }
+.stag > :nth-child(5) { animation-delay: 160ms; }
+.stag > :nth-child(6) { animation-delay: 200ms; }
+.stag > :nth-child(7) { animation-delay: 240ms; }
+.stag > :nth-child(8) { animation-delay: 280ms; }
+.stag > :nth-child(9) { animation-delay: 320ms; }
+.stag > :nth-child(10) { animation-delay: 360ms; }
+.stag > :nth-child(11) { animation-delay: 400ms; }
+.stag > :nth-child(12) { animation-delay: 440ms; }
+.stag > :nth-child(n + 13) { animation: none; }
+
+/* Secciones de la portada que aparecen al hacer scroll */
+.rv { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.rv-on { opacity: 1; transform: none; }
+
+/* Tarjetas y botones que responden al mouse y al toque */
+.lift { transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), background-color 0.2s, border-color 0.2s; }
+.lift:hover, .lift:focus-visible { transform: translateY(-2px); }
+.lift:active { transform: translateY(0) scale(0.99); }
+.press { transition: transform 0.14s ease, background-color 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s; }
+.press:active { transform: scale(0.97); }
+.pl-ok, .pl-cur, .pl-av, .pl-lock { transition: background-color 0.25s, border-color 0.25s, color 0.25s, box-shadow 0.25s, opacity 0.25s, transform 0.2s var(--ease); }
+.bar-in { animation: bar-in 0.9s var(--ease) backwards; }
+@keyframes bar-in { from { width: 0; } }
+
+/* Portada: los círculos se mueven muy despacio */
+.hero-circle { animation: drift 22s ease-in-out infinite alternate; }
+.hero-ring { animation: drift 26s ease-in-out infinite alternate-reverse; }
+@keyframes drift { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-26px, 20px, 0); } }
+
+/* Marcador de carga */
+.sk { background: linear-gradient(90deg, #eef2f9 0%, #e1e8f5 50%, #eef2f9 100%); background-size: 200% 100%; animation: sk 1.4s linear infinite; }
+@keyframes sk { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.dark .sk { background: linear-gradient(90deg, #111b2e 0%, #1a2942 50%, #111b2e 100%); background-size: 200% 100%; }
+
+/* Ícono del tema */
+.spin-in { display: inline-grid; animation: spin-in 0.45s var(--ease) both; }
+@keyframes spin-in { from { opacity: 0; transform: rotate(-70deg) scale(0.6); } to { opacity: 1; transform: none; } }
+
+/* Cambio claro/noche con círculo (navegadores que lo soportan) */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+  ::view-transition-old(root) { z-index: 1; }
+  ::view-transition-new(root) { z-index: 2; }
+}
+
+@media print { .rv { opacity: 1; transform: none; } }
+
+/* Quien prefiere menos movimiento no ve nada de esto */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; transition-delay: 0ms !important; scroll-behavior: auto !important; }
+  .hero-circle, .hero-ring, .sk { animation: none !important; }
+  .rv { opacity: 1; transform: none; }
+}
